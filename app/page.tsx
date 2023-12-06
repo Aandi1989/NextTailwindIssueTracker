@@ -6,6 +6,7 @@ import { authOptions } from './api/auth/[...nextauth]/route';
 import coffee from '@/public/images/coffee.jpg';
 import localFont from 'next/font/local';
 import "./globals.css";
+import { Metadata } from 'next';
 
 const poppins = localFont({
   src:'../public/fonts/poppins-regular-webfont.woff2',
@@ -44,4 +45,13 @@ export default async function Home() {
       /> */}
     </main>
   )
+}
+
+export async function generateMetadata(): Promise<Metadata>{
+  const product = await fetch('');
+
+  return {
+    title: 'product.title',
+    description: '...'
+  }
 }
