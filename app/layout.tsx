@@ -1,12 +1,25 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Roboto } from "next/font/google";
+import localFont from 'next/font/local';
 import NavBar from "./NavBar";
 import { Suspense } from "react";
 import AuthProvider from "./auth/Provider";
 import GoogleAnalyticsScript from "./GoogleAnalyticsScript";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"], variable: '--font-inter' });
+const roboto = Roboto({ subsets: ["latin"], weight: ['400', '500'], variable: '--font-roboto' });
+
+const poppins = localFont({
+  src:'../public/fonts/poppins-regular-webfont.woff2',
+  variable: '--font-poppins'
+})
+
+/*We can reuse fonts by doing this: https://stackoverflow.com/questions/74887314/using-multiple-fonts-across-pages-in-next-js
+
+*/ 
+
+
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -21,7 +34,9 @@ export default function RootLayout({
   return (
     <html lang="en" data-theme="winter">
       <GoogleAnalyticsScript/>
-      <body className={inter.className}>
+      <body className={roboto.className}>
+      {/* <body className={poppins.className}> */} {/* этот шрифт примениться ко всем объектам*/}
+      <div className={poppins.className}>Example of Local Font</div> {/* этот шрифт тоже примениться */}
         <AuthProvider>
           <NavBar />
           <main className="p-5">{children}</main>
